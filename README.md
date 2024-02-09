@@ -8,5 +8,6 @@ Xml: Использовать <bean> (для студентов), @Component с 
 Запустит вариант конфинурации b:
 Java: (@Configuration, @Bean (для студентов), @Component с @ComponentScan для
 преподавателя)
-  
+<hr>
+<br/>
 Добавлены флаг зачисления студента и BeanPostProcessor
