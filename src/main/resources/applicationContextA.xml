@@ -6,7 +6,7 @@
     <context:property-placeholder location="classpath:data.properties"/>
 
     <bean id="myStudent1"
-          class="com.oxytoca.student.NewStudent"
+          class="com.oxytoca.student.MyStudent"
           init-method="init"
           scope="prototype">
         <property name="name" value="${newStudent.name1}"/>
@@ -20,7 +20,7 @@
         </property>
     </bean>
     <bean id="myStudent2"
-          class="com.oxytoca.student.NewStudent"
+          class="com.oxytoca.student.MyStudent"
           init-method="init"
           scope="prototype">
         <property name="name" value="${newStudent.name2}"/>
@@ -35,7 +35,7 @@
     </bean>
     <bean id="myStudent3"
           init-method="init"
-          class="com.oxytoca.student.NewStudent"
+          class="com.oxytoca.student.MyStudent"
           scope="prototype">
         <property name="name" value="${newStudent.name3}"/>
         <property name="reportCard">
@@ -47,6 +47,6 @@
             </map>
         </property>
     </bean>
-
+    <bean class="com.oxytoca.config.MyBeanPostProcessor"/>
     <context:component-scan base-package="com.oxytoca.teacher"/>
 </beans>

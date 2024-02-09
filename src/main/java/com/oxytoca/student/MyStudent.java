@@ -2,15 +2,23 @@ package com.oxytoca.student;
 
 import java.util.Map;
 
-public class NewStudent implements Student {
+public class MyStudent implements Student {
     String name;
     Boolean enrollment;
     Map<String, Double> reportCard;
     public static final double LOWEST_GRADE = 3.0;
 
+
     public void init() {
         enrollment = this.calculateAverageGrade() >= LOWEST_GRADE;
-        System.out.println("init");
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setEnrollment(Boolean enrollment) {
+        this.enrollment = enrollment;
     }
 
     public void setName(String name) {
@@ -21,7 +29,7 @@ public class NewStudent implements Student {
         this.reportCard = reportCard;
     }
 
-    public NewStudent() {
+    public MyStudent() {
 
     }
 
@@ -29,7 +37,7 @@ public class NewStudent implements Student {
         return reportCard;
     }
 
-    public NewStudent(String name, Map<String, Double> reportCard) {
+    public MyStudent(String name, Map<String, Double> reportCard) {
         this.name = name;
         this.reportCard = reportCard;
     }
@@ -41,5 +49,16 @@ public class NewStudent implements Student {
                 .mapToDouble(a -> a)
                 .average()
                 .orElse(0.0);
+    }
+
+    @Override
+    public String toString() {
+        String isTrickyJil = name.equals("Jil") ?
+                " (the rector's daughter ┬┴┬┴┤(¬‿¬ )├┬┴┬┴ ) " : "";
+        String enrollDecision = enrollment ? " is enrolled in the university " :
+            " is not enrolled in the university ";
+
+        return "Student " + name + isTrickyJil +
+                " with " + "reportCard=" + reportCard + enrollDecision;
     }
 }
