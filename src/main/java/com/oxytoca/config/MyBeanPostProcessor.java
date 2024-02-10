@@ -14,10 +14,8 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
         if (bean instanceof MyStudent) {
             MyStudent student = (MyStudent) bean;
             if (student.getName().equals("Jil")) {
-                Map<String, Double> gradesOfJil = student.getReportCard();
-                for (Map.Entry<String, Double> entry : gradesOfJil.entrySet()) {
-                    entry.setValue(4.0);
-                }
+                student.getReportCard()
+                        .replaceAll((key, value) -> 4.0);
             }
         }
         return bean;

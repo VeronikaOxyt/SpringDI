@@ -7,52 +7,42 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Configuration
 @ComponentScan("com.oxytoca")
 @PropertySource("classpath:data.properties")
 public class BeanConfiguration {
 
-    private List<String> listOfSubjects(String stringSubjects) {
-        return List.of(stringSubjects.split(","));
-    }
-
-    private List<Double> listOfGrades(String grades) {
-        return Arrays
-                .stream(grades.split(","))
-                .mapToDouble(Double::parseDouble)
-                .boxed()
-                .collect(Collectors.toList());
-    }
-
-    private Map<String, Double> reportCardForStudent( String subjects, String stringGrades) {
+    @Bean(initMethod = "init")
+    public MyStudent newStudent1(@Value("${newStudent.name1}") String name) {
         Map<String, Double> reportCard = new HashMap<>();
-        List<String> subjectsList = listOfSubjects(subjects);
-        for (int i = 0; i < subjectsList.size(); i++) {
-            reportCard.put(subjectsList.get(i), listOfGrades(stringGrades).get(i));
-        }
-        return reportCard;
+        reportCard.put("math", 5.0);
+        reportCard.put("economics", 4.0);
+        reportCard.put("technicalDrawing", 5.0);
+        reportCard.put("physics", 4.0);
+
+        return new MyStudent(name, reportCard);
     }
 
     @Bean(initMethod = "init")
-    public MyStudent newStudent1(@Value("${newStudent.grades1}") String stringGrades,
-                                 @Value("${newStudent.name1}") String name,
-                                 @Value("${subjects}") String stringSubjects) {
-        return new MyStudent(name, reportCardForStudent(stringSubjects, stringGrades));
+    public MyStudent newStudent2(@Value("${newStudent.name2}") String name) {
+        Map<String, Double> reportCard = new HashMap<>();
+        reportCard.put("math", 5.0);
+        reportCard.put("economics", 4.0);
+        reportCard.put("technicalDrawing", 5.0);
+        reportCard.put("physics", 3.0);
+
+        return new MyStudent(name, reportCard);
     }
 
     @Bean(initMethod = "init")
-    public MyStudent newStudent2(@Value("${newStudent.grades2}") String stringGrades,
-                                 @Value("${newStudent.name2}") String name,
-                                 @Value("${subjects}") String stringSubjects) {
-        return new MyStudent(name, reportCardForStudent(stringSubjects, stringGrades));
-    }
+    public MyStudent newStudent3(@Value("${newStudent.name3}") String name) {
+        Map<String, Double> reportCard = new HashMap<>();
+        reportCard.put("math", 3.0);
+        reportCard.put("economics", 3.0);
+        reportCard.put("technicalDrawing", 2.0);
+        reportCard.put("physics", 2.0);
 
-    @Bean(initMethod = "init")
-    public MyStudent newStudent3(@Value("${newStudent.grades3}") String stringGrades,
-                                 @Value("${newStudent.name3}") String name,
-                                 @Value("${subjects}") String stringSubjects) {
-        return new MyStudent(name, reportCardForStudent(stringSubjects, stringGrades));
+        return new MyStudent(name, reportCard);
     }
 }
