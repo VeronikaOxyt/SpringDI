@@ -20,7 +20,6 @@ public class BeanConfiguration {
         reportCard.put("economics", 4.0);
         reportCard.put("technicalDrawing", 5.0);
         reportCard.put("physics", 4.0);
-
         return new MyStudent(name, reportCard);
     }
 
@@ -31,7 +30,6 @@ public class BeanConfiguration {
         reportCard.put("economics", 4.0);
         reportCard.put("technicalDrawing", 5.0);
         reportCard.put("physics", 3.0);
-
         return new MyStudent(name, reportCard);
     }
 
@@ -42,7 +40,6 @@ public class BeanConfiguration {
         reportCard.put("economics", 3.0);
         reportCard.put("technicalDrawing", 2.0);
         reportCard.put("physics", 2.0);
-
         return new MyStudent(name, reportCard);
     }
 }
